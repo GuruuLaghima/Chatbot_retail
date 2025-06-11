@@ -1,0 +1,290 @@
+{
+  "products": [
+    {
+      "id": "CMH001",
+      "name": "Tailleur Tweed Iconique",
+      "category": "Prêt-à-porter",
+      "subcategory": "Tailleurs",
+      "collection": "Automne-Hiver 2025",
+      "description": "Tailleur en tweed de laine bouclée, coupe Chanel signature avec passepoil contrastant.",
+      "price": 4500.00,
+      "currency": "EUR",
+      "brand": "Chanel Maison Heritage",
+      "materials": ["Tweed laine bouclée", "Doublure soie", "Boutons dorés"],
+      "colors": ["Noir et blanc", "Marine et blanc", "Rose poudré et noir"],
+      "stock_locations": {
+        "Paris Cambon": 5,
+        "Lyon Presqu'île": 3,
+        "Cannes Croisette": 2,
+        "Entrepôt Central": 15
+      },
+      "occasions": ["Business", "Cocktail", "Événement chic"],
+      "style_profile": ["Classique", "Élégant", "Intemporel"],
+      "body_type": ["Toutes morphologies", "Valorise la taille"],
+      "care_instructions": "Nettoyage à sec uniquement. Conserver sur cintre large.",
+      "delivery_time": "2-3 semaines",
+      "popularity_score": 9.8,
+      "limited_edition": false,
+      "tags": ["tweed", "signature", "classic", "timeless", "iconic"]
+    },
+    {
+      "id": "CMH002",
+      "name": "Robe Satin Noir Asymétrique",
+      "category": "Prêt-à-porter",
+      "subcategory": "Robes",
+      "collection": "Printemps-Été 2025",
+      "description": "Robe de soirée en satin de soie italien, coupe asymétrique avec drapé sur l'épaule.",
+      "price": 3200.00,
+      "currency": "EUR",
+      "brand": "Chanel Maison Heritage",
+      "materials": ["Satin de soie italien", "Doublure soie", "Fermeture invisible"],
+      "colors": ["Noir", "Blanc cassé", "Rouge cerise"],
+      "stock_locations": {
+        "Paris Cambon": 4,
+        "Lyon Presqu'île": 3,
+        "Cannes Croisette": 3,
+        "Entrepôt Central": 12
+      },
+      "occasions": ["Soirée", "Gala", "Mariage invité"],
+      "style_profile": ["Moderne", "Sophistiqué", "Avant-garde"],
+      "body_type": ["Silhouette en A", "Morphologie en H"],
+      "care_instructions": "Nettoyage à sec. Suspendre après port pour éviter les plis.",
+      "delivery_time": "3-4 semaines",
+      "popularity_score": 9.3,
+      "limited_edition": false,
+      "tags": ["evening", "silk", "asymmetric", "modern", "sophisticated"]
+    },
+    {
+      "id": "CMH003",
+      "name": "Sac Matelassé Chaîne Dorée",
+      "category": "Maroquinerie",
+      "subcategory": "Sacs à main",
+      "collection": "Intemporel",
+      "description": "Sac à rabat en agneau matelassé avec chaîne dorée entrelacée de cuir.",
+      "price": 5500.00,
+      "currency": "EUR",
+      "brand": "Chanel Maison Heritage",
+      "materials": ["Agneau matelassé", "Chaîne dorée", "Intérieur daim"],
+      "dimensions": {
+        "length": 25,
+        "width": 15,
+        "height": 6,
+        "unit": "cm"
+      },
+      "colors": ["Noir", "Beige", "Rouge", "Blanc", "Marine"],
+      "stock_locations": {
+        "Paris Cambon": 6,
+        "Lyon Presqu'île": 4,
+        "Cannes Croisette": 5,
+        "Entrepôt Central": 20
+      },
+      "occasions": ["Quotidien chic", "Soirée", "Voyage"],
+      "style_profile": ["Classique", "Luxueux", "Intemporel"],
+      "care_instructions": "Éviter l'humidité. Nettoyer avec chiffon doux. Conserver dans dustbag.",
+      "delivery_time": "4-6 semaines",
+      "popularity_score": 9.9,
+      "limited_edition": false,
+      "authenticity_card": true,
+      "tags": ["quilted", "chain", "signature", "classic", "luxury"]
+    },
+    {
+      "id": "CMH004",
+      "name": "Escarpins Bout Rond Bicolores",
+      "category": "Chaussures",
+      "subcategory": "Escarpins",
+      "collection": "Intemporel",
+      "description": "Escarpins iconiques à bout rond en cuir d'agneau noir et beige.",
+      "price": 950.00,
+      "currency": "EUR",
+      "brand": "Chanel Maison Heritage",
+      "materials": ["Cuir d'agneau", "Semelle cuir", "Élastique"],
+      "colors": ["Noir et beige", "Tout noir", "Rouge et noir"],
+      "heel_height": 6,
+      "stock_locations": {
+        "Paris Cambon": 8,
+        "Lyon Presqu'île": 6,
+        "Cannes Croisette": 4,
+        "Entrepôt Central": 25
+      },
+      "occasions": ["Business", "Quotidien", "Soirée"],
+      "style_profile": ["Classique", "Élégant", "Confortable"],
+      "care_instructions": "Cirage régulier. Embauchoirs recommandés.",
+      "delivery_time": "2-3 semaines",
+      "popularity_score": 9.4,
+      "limited_edition": false,
+      "tags": ["two-tone", "classic", "comfortable", "iconic", "6cm-heel"]
+    },
+    {
+      "id": "CMH005",
+      "name": "Manteau Bouclé Long Camel",
+      "category": "Prêt-à-porter",
+      "subcategory": "Manteaux",
+      "collection": "Automne-Hiver 2025",
+      "description": "Manteau long en laine bouclée camel, coupe droite avec ceinture amovible.",
+      "price": 3800.00,
+      "currency": "EUR",
+      "brand": "Chanel Maison Heritage",
+      "materials": ["Laine bouclée", "Doublure matelassée", "Ceinture cuir"],
+      "colors": ["Camel", "Noir", "Gris perle"],
+      "stock_locations": {
+        "Paris Cambon": 3,
+        "Lyon Presqu'île": 2,
+        "Cannes Croisette": 1,
+        "Entrepôt Central": 8
+      },
+      "occasions": ["Quotidien chic", "Business", "Voyage"],
+      "style_profile": ["Classique", "Élégant", "Intemporel"],
+      "body_type": ["Toutes morphologies", "Allonge la silhouette"],
+      "care_instructions": "Nettoyage à sec. Suspendre sur cintre large.",
+      "delivery_time": "3-4 semaines",
+      "popularity_score": 8.9,
+      "limited_edition": false,
+      "tags": ["wool", "long", "belt", "classic", "winter"]
+    },
+    {
+      "id": "CMH006",
+      "name": "Collier Perles Signature",
+      "category": "Bijoux",
+      "subcategory": "Colliers",
+      "collection": "Intemporel",
+      "description": "Collier de perles de culture en rang simple, fermoir CC en métal doré.",
+      "price": 2200.00,
+      "currency": "EUR",
+      "brand": "Chanel Maison Heritage",
+      "materials": ["Perles de culture", "Fermoir métal doré", "Soie"],
+      "pearl_size": "8-9mm",
+      "length": "42-45cm",
+      "colors": ["Blanc nacré", "Crème", "Gris perle"],
+      "stock_locations": {
+        "Paris Cambon": 8,
+        "Lyon Presqu'île": 5,
+        "Cannes Croisette": 6,
+        "Entrepôt Central": 30
+      },
+      "occasions": ["Quotidien chic", "Soirée", "Mariage"],
+      "style_profile": ["Classique", "Élégant", "Intemporel"],
+      "care_instructions": "Éviter parfums et cosmétiques. Nettoyer avec chiffon doux.",
+      "delivery_time": "1-2 semaines",
+      "popularity_score": 9.6,
+      "limited_edition": false,
+      "certificate": "Perles de culture certifiées",
+      "tags": ["pearls", "signature", "classic", "adjustable", "AAA-grade"]
+    },
+    {
+      "id": "CMH007",
+      "name": "Ballerines Cuir Nude",
+      "category": "Chaussures",
+      "subcategory": "Ballerines",
+      "collection": "Printemps-Été 2025",
+      "description": "Ballerines en cuir d'agneau nude avec bout captoe noir. Confort optimal pour un usage quotidien.",
+      "price": 750.00,
+      "currency": "EUR",
+      "brand": "Chanel Maison Heritage",
+      "materials": ["Cuir d'agneau", "Élastique", "Semelle cuir"],
+      "colors": ["Nude et noir", "Tout noir", "Blanc et noir"],
+      "heel_height": 1,
+      "stock_locations": {
+        "Paris Cambon": 10,
+        "Lyon Presqu'île": 8,
+        "Cannes Croisette": 6,
+        "Entrepôt Central": 35
+      },
+      "occasions": ["Quotidien", "Décontracté chic", "Ville"],
+      "style_profile": ["Confortable", "Élégant", "Pratique"],
+      "care_instructions": "Nettoyage avec chiffon humide. Embauchoirs recommandés.",
+      "delivery_time": "1-2 semaines",
+      "popularity_score": 9.1,
+      "limited_edition": false,
+      "tags": ["flats", "captoe", "comfortable", "daily", "nude"]
+    },
+    {
+      "id": "CMH008",
+      "name": "Sac Cabas Grand Format",
+      "category": "Maroquinerie",
+      "subcategory": "Sacs cabas",
+      "collection": "Intemporel",
+      "description": "Grand sac cabas en cuir d'agneau matelassé, parfait pour le quotidien professionnel.",
+      "price": 4200.00,
+      "currency": "EUR",
+      "brand": "Chanel Maison Heritage",
+      "materials": ["Cuir d'agneau", "Chaîne dorée", "Aimant"],
+      "dimensions": {
+        "length": 35,
+        "width": 25,
+        "height": 12,
+        "unit": "cm"
+      },
+      "colors": ["Noir", "Beige", "Marine", "Bordeaux"],
+      "stock_locations": {
+        "Paris Cambon": 4,
+        "Lyon Presqu'île": 3,
+        "Cannes Croisette": 2,
+        "Entrepôt Central": 15
+      },
+      "occasions": ["Business", "Quotidien", "Voyage"],
+      "style_profile": ["Pratique", "Élégant", "Professionnel"],
+      "care_instructions": "Éviter surcharge. Nettoyer avec produits cuir spécialisés.",
+      "delivery_time": "3-4 semaines",
+      "popularity_score": 9.2,
+      "limited_edition": false,
+      "laptop_compatible": true,
+      "tags": ["tote", "large", "quilted", "professional", "magnetic"]
+    }
+  ],
+  "categories": [
+    {
+      "id": "pret-a-porter",
+      "name": "Prêt-à-porter",
+      "description": "Vêtements haute couture pour femmes",
+      "subcategories": ["Tailleurs", "Robes", "Manteaux", "Vestes"]
+    },
+    {
+      "id": "maroquinerie",
+      "name": "Maroquinerie",
+      "description": "Sacs à main et accessoires en cuir",
+      "subcategories": ["Sacs à main", "Sacs cabas", "Pochettes"]
+    },
+    {
+      "id": "chaussures",
+      "name": "Chaussures",
+      "description": "Chaussures de luxe pour femmes",
+      "subcategories": ["Escarpins", "Ballerines", "Boots"]
+    },
+    {
+      "id": "bijoux",
+      "name": "Bijoux",
+      "description": "Bijoux de prestige et accessoires",
+      "subcategories": ["Colliers", "Bracelets", "Boucles d'oreilles"]
+    }
+  ],
+  "stores": [
+    {
+      "id": "paris-cambon",
+      "name": "Paris Cambon",
+      "address": "31 rue Cambon, 75001 Paris",
+      "phone": "+33 1 42 86 28 00",
+      "services": ["Personal shopping", "Alterations", "VIP lounge"]
+    },
+    {
+      "id": "lyon-presquile",
+      "name": "Lyon Presqu'île",
+      "address": "18 rue du Président Édouard Herriot, 69002 Lyon",
+      "phone": "+33 4 78 42 25 03",
+      "services": ["Personal shopping", "Alterations"]
+    },
+    {
+      "id": "cannes-croisette",
+      "name": "Cannes Croisette",
+      "address": "5 rue d'Antibes, 06400 Cannes",
+      "phone": "+33 4 93 39 05 16",
+      "services": ["Personal shopping", "Seasonal collection"]
+    }
+  ],
+  "metadata": {
+    "total_products": 8,
+    "last_updated": "2025-05-26",
+    "currency": "EUR",
+    "company": "Chanel Maison Heritage",
+    "target_market": "Luxury fashion"
+  }
+}

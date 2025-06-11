@@ -1,0 +1,837 @@
+{
+  "training_data": [
+    {
+      "id": 1,
+      "text": "Je cherche un tailleur pour le bureau",
+      "intent": "product_search"
+    },
+    {
+      "id": 2,
+      "text": "Avez-vous des robes de soirée ?",
+      "intent": "product_search"
+    },
+    {
+      "id": 3,
+      "text": "Je voudrais voir vos sacs à main",
+      "intent": "product_search"
+    },
+    {
+      "id": 4,
+      "text": "Montrez-moi des chaussures élégantes",
+      "intent": "product_search"
+    },
+    {
+      "id": 5,
+      "text": "Quels bijoux avez-vous ?",
+      "intent": "product_search"
+    },
+    {
+      "id": 6,
+      "text": "Il me faut un sac pour l'été",
+      "intent": "product_search"
+    },
+    {
+      "id": 7,
+      "text": "Recherche sac élégant",
+      "intent": "product_search"
+    },
+    {
+      "id": 8,
+      "text": "Je veux des chaussures confortables",
+      "intent": "product_search"
+    },
+    {
+      "id": 9,
+      "text": "Besoin d'une robe chic",
+      "intent": "product_search"
+    },
+    {
+      "id": 10,
+      "text": "Sacoche pour le travail",
+      "intent": "product_search"
+    },
+    {
+      "id": 11,
+      "text": "Escarpins disponibles ?",
+      "intent": "product_search"
+    },
+    {
+      "id": 12,
+      "text": "Ballerines en cuir",
+      "intent": "product_search"
+    },
+    {
+      "id": 13,
+      "text": "Maroquinerie de luxe",
+      "intent": "product_search"
+    },
+    {
+      "id": 14,
+      "text": "Tenue pour cocktail",
+      "intent": "product_search"
+    },
+    {
+      "id": 15,
+      "text": "Articles mode femme",
+      "intent": "product_search"
+    },
+    {
+      "id": 16,
+      "text": "Vos collections printemps",
+      "intent": "product_search"
+    },
+    {
+      "id": 17,
+      "text": "Nouveautés Chanel",
+      "intent": "product_search"
+    },
+    {
+      "id": 18,
+      "text": "Produits iconiques",
+      "intent": "product_search"
+    },
+    {
+      "id": 19,
+      "text": "Souliers élégants",
+      "intent": "product_search"
+    },
+    {
+      "id": 20,
+      "text": "Habits de soirée",
+      "intent": "product_search"
+    },
+    {
+      "id": 21,
+      "text": "Besace professionnelle",
+      "intent": "product_search"
+    },
+    {
+      "id": 22,
+      "text": "Cartable de luxe",
+      "intent": "product_search"
+    },
+    {
+      "id": 23,
+      "text": "Toilette pour mariage",
+      "intent": "product_search"
+    },
+    {
+      "id": 24,
+      "text": "Chaussures de ville",
+      "intent": "product_search"
+    },
+    {
+      "id": 25,
+      "text": "Accessoires mode",
+      "intent": "product_search"
+    },
+    {
+      "id": 26,
+      "text": "Vêtements haute couture",
+      "intent": "product_search"
+    },
+    {
+      "id": 27,
+      "text": "Articles de prestige",
+      "intent": "product_search"
+    },
+    {
+      "id": 28,
+      "text": "Pièces signature Chanel",
+      "intent": "product_search"
+    },
+    {
+      "id": 29,
+      "text": "Collection intemporelle",
+      "intent": "product_search"
+    },
+    {
+      "id": 30,
+      "text": "Mode française élégante",
+      "intent": "product_search"
+    },
+    {
+      "id": 31,
+      "text": "Combien coûte ce tailleur ?",
+      "intent": "price_inquiry"
+    },
+    {
+      "id": 32,
+      "text": "Quel est le prix de cette robe ?",
+      "intent": "price_inquiry"
+    },
+    {
+      "id": 33,
+      "text": "Le sac coûte combien ?",
+      "intent": "price_inquiry"
+    },
+    {
+      "id": 34,
+      "text": "Pouvez-vous me dire le tarif ?",
+      "intent": "price_inquiry"
+    },
+    {
+      "id": 35,
+      "text": "C'est à quel prix ?",
+      "intent": "price_inquiry"
+    },
+    {
+      "id": 36,
+      "text": "Budget nécessaire pour cet ensemble",
+      "intent": "price_inquiry"
+    },
+    {
+      "id": 37,
+      "text": "Tarif des chaussures neuves",
+      "intent": "price_inquiry"
+    },
+    {
+      "id": 38,
+      "text": "Coût d'un sac matelassé",
+      "intent": "price_inquiry"
+    },
+    {
+      "id": 39,
+      "text": "Montant à prévoir",
+      "intent": "price_inquiry"
+    },
+    {
+      "id": 40,
+      "text": "Gamme tarifaire bijoux",
+      "intent": "price_inquiry"
+    },
+    {
+      "id": 41,
+      "text": "Prix des escarpins",
+      "intent": "price_inquiry"
+    },
+    {
+      "id": 42,
+      "text": "Coût total tenue",
+      "intent": "price_inquiry"
+    },
+    {
+      "id": 43,
+      "text": "Y a-t-il des promotions ?",
+      "intent": "price_inquiry"
+    },
+    {
+      "id": 44,
+      "text": "Réductions en cours",
+      "intent": "price_inquiry"
+    },
+    {
+      "id": 45,
+      "text": "Offres spéciales disponibles",
+      "intent": "price_inquiry"
+    },
+    {
+      "id": 46,
+      "text": "Soldes actuelles",
+      "intent": "price_inquiry"
+    },
+    {
+      "id": 47,
+      "text": "Remises sur collections",
+      "intent": "price_inquiry"
+    },
+    {
+      "id": 48,
+      "text": "Vente privée prévue",
+      "intent": "price_inquiry"
+    },
+    {
+      "id": 49,
+      "text": "Conditions de paiement",
+      "intent": "price_inquiry"
+    },
+    {
+      "id": 50,
+      "text": "Facilités de règlement",
+      "intent": "price_inquiry"
+    },
+    {
+      "id": 51,
+      "text": "Paiement en plusieurs fois",
+      "intent": "price_inquiry"
+    },
+    {
+      "id": 52,
+      "text": "Tarifs préférentiels",
+      "intent": "price_inquiry"
+    },
+    {
+      "id": 53,
+      "text": "Prix membre VIP",
+      "intent": "price_inquiry"
+    },
+    {
+      "id": 54,
+      "text": "Devis personnalisé",
+      "intent": "price_inquiry"
+    },
+    {
+      "id": 55,
+      "text": "Estimation budget",
+      "intent": "price_inquiry"
+    },
+    {
+      "id": 56,
+      "text": "Avez-vous cette robe en stock ?",
+      "intent": "stock_check"
+    },
+    {
+      "id": 57,
+      "text": "Est-ce disponible en magasin ?",
+      "intent": "stock_check"
+    },
+    {
+      "id": 58,
+      "text": "Y a-t-il du stock à Paris ?",
+      "intent": "stock_check"
+    },
+    {
+      "id": 59,
+      "text": "Le tailleur est-il disponible ?",
+      "intent": "stock_check"
+    },
+    {
+      "id": 60,
+      "text": "Chaussures en stock ?",
+      "intent": "stock_check"
+    },
+    {
+      "id": 61,
+      "text": "Sac matelassé disponible",
+      "intent": "stock_check"
+    },
+    {
+      "id": 62,
+      "text": "Inventaire Lyon",
+      "intent": "stock_check"
+    },
+    {
+      "id": 63,
+      "text": "Stock boutique Cannes",
+      "intent": "stock_check"
+    },
+    {
+      "id": 64,
+      "text": "Article encore dispo ?",
+      "intent": "stock_check"
+    },
+    {
+      "id": 65,
+      "text": "Quantités disponibles",
+      "intent": "stock_check"
+    },
+    {
+      "id": 66,
+      "text": "Rupture de stock ?",
+      "intent": "stock_check"
+    },
+    {
+      "id": 67,
+      "text": "Réservation possible",
+      "intent": "stock_check"
+    },
+    {
+      "id": 68,
+      "text": "Disponible immédiatement",
+      "intent": "stock_check"
+    },
+    {
+      "id": 69,
+      "text": "En entrepôt central",
+      "intent": "stock_check"
+    },
+    {
+      "id": 70,
+      "text": "Stock temps réel",
+      "intent": "stock_check"
+    },
+    {
+      "id": 71,
+      "text": "Vérifier disponibilité",
+      "intent": "stock_check"
+    },
+    {
+      "id": 72,
+      "text": "État des stocks",
+      "intent": "stock_check"
+    },
+    {
+      "id": 73,
+      "text": "Produit en magasin",
+      "intent": "stock_check"
+    },
+    {
+      "id": 74,
+      "text": "Dernier exemplaire",
+      "intent": "stock_check"
+    },
+    {
+      "id": 75,
+      "text": "Réapprovisionnement prévu",
+      "intent": "stock_check"
+    },
+    {
+      "id": 76,
+      "text": "Liste d'attente",
+      "intent": "stock_check"
+    },
+    {
+      "id": 77,
+      "text": "Commande sur mesure",
+      "intent": "stock_check"
+    },
+    {
+      "id": 78,
+      "text": "Livraison express",
+      "intent": "stock_check"
+    },
+    {
+      "id": 79,
+      "text": "Stock multicanal",
+      "intent": "stock_check"
+    },
+    {
+      "id": 80,
+      "text": "Disponibilité online",
+      "intent": "stock_check"
+    },
+    {
+      "id": 81,
+      "text": "Que me conseillez-vous pour un mariage ?",
+      "intent": "style_recommendation"
+    },
+    {
+      "id": 82,
+      "text": "Quelle tenue pour le bureau ?",
+      "intent": "style_recommendation"
+    },
+    {
+      "id": 83,
+      "text": "Aidez-moi à choisir une robe",
+      "intent": "style_recommendation"
+    },
+    {
+      "id": 84,
+      "text": "Que porter pour une soirée ?",
+      "intent": "style_recommendation"
+    },
+    {
+      "id": 85,
+      "text": "Donnez-moi des conseils de style",
+      "intent": "style_recommendation"
+    },
+    {
+      "id": 86,
+      "text": "Look parfait cocktail",
+      "intent": "style_recommendation"
+    },
+    {
+      "id": 87,
+      "text": "Associations couleurs mode",
+      "intent": "style_recommendation"
+    },
+    {
+      "id": 88,
+      "text": "Conseils morphologie",
+      "intent": "style_recommendation"
+    },
+    {
+      "id": 89,
+      "text": "Comment bien s'habiller",
+      "intent": "style_recommendation"
+    },
+    {
+      "id": 90,
+      "text": "Tendances actuelles",
+      "intent": "style_recommendation"
+    },
+    {
+      "id": 91,
+      "text": "Style business chic",
+      "intent": "style_recommendation"
+    },
+    {
+      "id": 92,
+      "text": "Accessoires assortis",
+      "intent": "style_recommendation"
+    },
+    {
+      "id": 93,
+      "text": "Garde-robe essentielle",
+      "intent": "style_recommendation"
+    },
+    {
+      "id": 94,
+      "text": "Recommandations styling",
+      "intent": "style_recommendation"
+    },
+    {
+      "id": 95,
+      "text": "Mode professionnelle",
+      "intent": "style_recommendation"
+    },
+    {
+      "id": 96,
+      "text": "Tenue décontractée chic",
+      "intent": "style_recommendation"
+    },
+    {
+      "id": 97,
+      "text": "Look intemporel",
+      "intent": "style_recommendation"
+    },
+    {
+      "id": 98,
+      "text": "Style parisienne",
+      "intent": "style_recommendation"
+    },
+    {
+      "id": 99,
+      "text": "Élégance française",
+      "intent": "style_recommendation"
+    },
+    {
+      "id": 100,
+      "text": "Conseil en image",
+      "intent": "style_recommendation"
+    },
+    {
+      "id": 101,
+      "text": "Personnalisation style",
+      "intent": "style_recommendation"
+    },
+    {
+      "id": 102,
+      "text": "Harmonie des couleurs",
+      "intent": "style_recommendation"
+    },
+    {
+      "id": 103,
+      "text": "Moderniser sa garde-robe",
+      "intent": "style_recommendation"
+    },
+    {
+      "id": 104,
+      "text": "Code vestimentaire événement",
+      "intent": "style_recommendation"
+    },
+    {
+      "id": 105,
+      "text": "Savoir-vivre mode",
+      "intent": "style_recommendation"
+    },
+    {
+      "id": 106,
+      "text": "Comment entretenir ce sac en cuir ?",
+      "intent": "care_instructions"
+    },
+    {
+      "id": 107,
+      "text": "Comment nettoyer cette robe ?",
+      "intent": "care_instructions"
+    },
+    {
+      "id": 108,
+      "text": "Conseils d'entretien pour le tweed ?",
+      "intent": "care_instructions"
+    },
+    {
+      "id": 109,
+      "text": "Comment prendre soin de mes chaussures ?",
+      "intent": "care_instructions"
+    },
+    {
+      "id": 110,
+      "text": "Instructions de lavage",
+      "intent": "care_instructions"
+    },
+    {
+      "id": 111,
+      "text": "Nettoyage produits luxe",
+      "intent": "care_instructions"
+    },
+    {
+      "id": 112,
+      "text": "Conservation vêtements",
+      "intent": "care_instructions"
+    },
+    {
+      "id": 113,
+      "text": "Entretien cuir agneau",
+      "intent": "care_instructions"
+    },
+    {
+      "id": 114,
+      "text": "Soin bijoux perles",
+      "intent": "care_instructions"
+    },
+    {
+      "id": 115,
+      "text": "Maintenance chaussures",
+      "intent": "care_instructions"
+    },
+    {
+      "id": 116,
+      "text": "Produits recommandés",
+      "intent": "care_instructions"
+    },
+    {
+      "id": 117,
+      "text": "Éviter taches tissu",
+      "intent": "care_instructions"
+    },
+    {
+      "id": 118,
+      "text": "Stockage vêtements",
+      "intent": "care_instructions"
+    },
+    {
+      "id": 119,
+      "text": "Réparation possible",
+      "intent": "care_instructions"
+    },
+    {
+      "id": 120,
+      "text": "Garantie produits",
+      "intent": "care_instructions"
+    },
+    {
+      "id": 121,
+      "text": "Nettoyage à sec",
+      "intent": "care_instructions"
+    },
+    {
+      "id": 122,
+      "text": "Protection contre humidité",
+      "intent": "care_instructions"
+    },
+    {
+      "id": 123,
+      "text": "Traitement anti-taches",
+      "intent": "care_instructions"
+    },
+    {
+      "id": 124,
+      "text": "Imperméabilisation cuir",
+      "intent": "care_instructions"
+    },
+    {
+      "id": 125,
+      "text": "Cirage chaussures",
+      "intent": "care_instructions"
+    },
+    {
+      "id": 126,
+      "text": "Embauchoirs recommandés",
+      "intent": "care_instructions"
+    },
+    {
+      "id": 127,
+      "text": "Séchage naturel",
+      "intent": "care_instructions"
+    },
+    {
+      "id": 128,
+      "text": "Température lavage",
+      "intent": "care_instructions"
+    },
+    {
+      "id": 129,
+      "text": "Pressing spécialisé",
+      "intent": "care_instructions"
+    },
+    {
+      "id": 130,
+      "text": "Détachage professionnel",
+      "intent": "care_instructions"
+    },
+    {
+      "id": 131,
+      "text": "Bonjour, comment allez-vous ?",
+      "intent": "general_chat"
+    },
+    {
+      "id": 132,
+      "text": "Salut !",
+      "intent": "general_chat"
+    },
+    {
+      "id": 133,
+      "text": "Bonne journée",
+      "intent": "general_chat"
+    },
+    {
+      "id": 134,
+      "text": "Merci beaucoup",
+      "intent": "general_chat"
+    },
+    {
+      "id": 135,
+      "text": "Au revoir",
+      "intent": "general_chat"
+    },
+    {
+      "id": 136,
+      "text": "Oui",
+      "intent": "general_chat"
+    },
+    {
+      "id": 137,
+      "text": "Non",
+      "intent": "general_chat"
+    },
+    {
+      "id": 138,
+      "text": "D'accord",
+      "intent": "general_chat"
+    },
+    {
+      "id": 139,
+      "text": "Parfait",
+      "intent": "general_chat"
+    },
+    {
+      "id": 140,
+      "text": "Très bien",
+      "intent": "general_chat"
+    },
+    {
+      "id": 141,
+      "text": "Ça va",
+      "intent": "general_chat"
+    },
+    {
+      "id": 142,
+      "text": "Bonsoir",
+      "intent": "general_chat"
+    },
+    {
+      "id": 143,
+      "text": "Comment ça va ?",
+      "intent": "general_chat"
+    },
+    {
+      "id": 144,
+      "text": "À bientôt",
+      "intent": "general_chat"
+    },
+    {
+      "id": 145,
+      "text": "Super !",
+      "intent": "general_chat"
+    },
+    {
+      "id": 146,
+      "text": "Enchanté",
+      "intent": "general_chat"
+    },
+    {
+      "id": 147,
+      "text": "Ravi de vous rencontrer",
+      "intent": "general_chat"
+    },
+    {
+      "id": 148,
+      "text": "Excusez-moi",
+      "intent": "general_chat"
+    },
+    {
+      "id": 149,
+      "text": "Pardon",
+      "intent": "general_chat"
+    },
+    {
+      "id": 150,
+      "text": "S'il vous plaît",
+      "intent": "general_chat"
+    },
+    {
+      "id": 151,
+      "text": "De rien",
+      "intent": "general_chat"
+    },
+    {
+      "id": 152,
+      "text": "Avec plaisir",
+      "intent": "general_chat"
+    },
+    {
+      "id": 153,
+      "text": "Bien sûr",
+      "intent": "general_chat"
+    },
+    {
+      "id": 154,
+      "text": "Certainement",
+      "intent": "general_chat"
+    },
+    {
+      "id": 155,
+      "text": "Absolument",
+      "intent": "general_chat"
+    },
+    {
+      "id": 156,
+      "text": "Peut-être",
+      "intent": "general_chat"
+    },
+    {
+      "id": 157,
+      "text": "Je ne sais pas",
+      "intent": "general_chat"
+    },
+    {
+      "id": 158,
+      "text": "C'est possible",
+      "intent": "general_chat"
+    },
+    {
+      "id": 159,
+      "text": "Effectivement",
+      "intent": "general_chat"
+    },
+    {
+      "id": 160,
+      "text": "Exactement",
+      "intent": "general_chat"
+    },
+    {
+      "id": 161,
+      "text": "Je vois",
+      "intent": "general_chat"
+    },
+    {
+      "id": 162,
+      "text": "Je comprends",
+      "intent": "general_chat"
+    },
+    {
+      "id": 163,
+      "text": "Intéressant",
+      "intent": "general_chat"
+    },
+    {
+      "id": 164,
+      "text": "Formidable",
+      "intent": "general_chat"
+    },
+    {
+      "id": 165,
+      "text": "Magnifique",
+      "intent": "general_chat"
+    }
+  ],
+  "metadata": {
+    "total_examples": 165,
+    "total_intents": 6,
+    "examples_per_intent": 27,
+    "language": "french",
+    "domain": "luxury_fashion",
+    "version": "4.0_ultra_enhanced_precision"
+  }
+}

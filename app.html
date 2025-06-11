@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chanel Maison Heritage - Assistant IA pour Conseillers</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr 320px;
+            gap: 20px;
+            height: 100vh;
+        }
+        
+        /* Sidebar gauche - Exemples de questions */
+        .sidebar-left {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            overflow-y: auto;
+        }
+        
+        .sidebar-left h3 {
+            color: #1a1a2e;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+            border-bottom: 2px solid gold;
+            padding-bottom: 8px;
+        }
+        
+        .question-category {
+            margin-bottom: 20px;
+        }
+        
+        .question-category h4 {
+            color: #16213e;
+            font-size: 0.9em;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .example-question {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.85em;
+        }
+        
+        .example-question:hover {
+            background: #e3f2fd;
+            border-color: #1976d2;
+            transform: translateX(5px);
+        }
+        
+        .example-question:active {
+            background: #bbdefb;
+        }
+        
+        /* Zone de chat centrale */
+        .chat-main {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        
+        .chat-header {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .chat-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #ffd700, #ffed4e, #ffd700);
+        }
+        
+        .chat-header h1 {
+            font-size: 1.8em;
+            margin-bottom: 8px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .chat-header p {
+            opacity: 0.9;
+            font-size: 1em;
+        }
+        
+        .status-bar {
+            background: #f8f9fa;
+            padding: 12px 20px;
+            border-bottom: 1px solid #e9ecef;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9em;
+            color: #666;
+        }
+        
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #28a745;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+        
+        .messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            background: #fafbfc;
+        }
+        
+        .message {
+            margin-bottom: 20px;
+            animation: fadeIn 0.4s ease-in;
+        }
+        
+        .message-user {
+            display: flex;
+            justify-content: flex-end;
+        }
+        
+        .message-bot {
+            display: flex;
+            justify-content: flex-start;
+        }
+        
+        .message-content {
+            max-width: 80%;
+            padding: 15px 18px;
+            border-radius: 18px;
+            line-height: 1.5;
+            position: relative;
+        }
+        
+        .message-content.user {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: white;
+            border-bottom-right-radius: 4px;
+        }
+        
+        .message-content.bot {
+            background: white;
+            border: 1px solid #e9ecef;
+            border-bottom-left-radius: 4px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .message-meta {
+            font-size: 0.75em;
+            opacity: 0.7;
+            margin-top: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .confidence-badge {
+            background: #e3f2fd;
+            color: #1976d2;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.7em;
+            font-weight: 600;
+        }
+        
+        .input-container {
+            padding: 20px;
+            background: white;
+            border-top: 1px solid #e9ecef;
+            display: flex;
+            gap: 12px;
+            align-items: flex-end;
+        }
+        
+        .message-input {
+            flex: 1;
+            padding: 15px 18px;
+            border: 2px solid #e9ecef;
+            border-radius: 25px;
+            font-size: 16px;
+            outline: none;
+            transition: all 0.3s ease;
+            resize: none;
+            min-height: 50px;
+            max-height: 120px;
+        }
+        
+        .message-input:focus {
+            border-color: #1a1a2e;
+            box-shadow: 0 0 0 3px rgba(26, 26, 46, 0.1);
+        }
+        
+        .send-button {
+            padding: 15px 25px;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+        
+        .send-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(26, 26, 46, 0.3);
+        }
+        
+        .send-button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        /* Sidebar droite - Informations contextuelles */
+        .sidebar-right {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            overflow-y: auto;
+        }
+        
+        .sidebar-right h3 {
+            color: #1a1a2e;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+            border-bottom: 2px solid #ffd700;
+            padding-bottom: 8px;
+        }
+        
+        .info-section {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .info-section h4 {
+            color: #16213e;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .shortcut-key {
+            background: #e9ecef;
+            color: #495057;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 0.8em;
+            margin-left: auto;
+        }
+        
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 15px;
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 10px;
+            margin: 10px 20px;
+            color: #856404;
+            animation: fadeIn 0.3s ease-in;
+        }
+        
+        .loading::before {
+            content: '🤖';
+            display: inline-block;
+            animation: bounce 1s infinite;
+            margin-right: 10px;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .error-message {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 10px 20px;
+            display: none;
+        }
+        
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .container {
+                grid-template-columns: 250px 1fr 280px;
+            }
+        }
+        
+        @media (max-width: 900px) {
+            .container {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto 1fr auto;
+            }
+            
+            .sidebar-left, .sidebar-right {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar Gauche - Exemples de questions -->
+        <div class="sidebar-left">
+            <h3>💡 Exemples de Questions</h3>
+            
+            <div class="question-category">
+                <h4>🔍 Recherche Produits</h4>
+                <div class="example-question" onclick="insertQuestion('Je cherche un sac pour le bureau')">
+                    Je cherche un sac pour le bureau
+                </div>
+                <div class="example-question" onclick="insertQuestion('Avez-vous des chaussures élégantes ?')">
+                    Avez-vous des chaussures élégantes ?
+                </div>
+                <div class="example-question" onclick="insertQuestion('Montrez-moi vos bijoux en perles')">
+                    Montrez-moi vos bijoux en perles
+                </div>
+                <div class="example-question" onclick="insertQuestion('Je voudrais voir des robes de soirée')">
+                    Je voudrais voir des robes de soirée
+                </div>
+            </div>
+            
+            <div class="question-category">
+                <h4>💰 Prix & Budget</h4>
+                <div class="example-question" onclick="insertQuestion('Combien coûte le tailleur tweed ?')">
+                    Combien coûte le tailleur tweed ?
+                </div>
+                <div class="example-question" onclick="insertQuestion('Quel est le prix du sac matelassé ?')">
+                    Quel est le prix du sac matelassé ?
+                </div>
+                <div class="example-question" onclick="insertQuestion('Budget pour un ensemble complet ?')">
+                    Budget pour un ensemble complet ?
+                </div>
+            </div>
+            
+            <div class="question-category">
+                <h4>📦 Stock & Disponibilité</h4>
+                <div class="example-question" onclick="insertQuestion('Avez-vous du stock à Paris ?')">
+                    Avez-vous du stock à Paris ?
+                </div>
+                <div class="example-question" onclick="insertQuestion('Le tailleur est-il disponible à Lyon ?')">
+                    Le tailleur est-il disponible à Lyon ?
+                </div>
+                <div class="example-question" onclick="insertQuestion('Quels produits sont en stock ?')">
+                    Quels produits sont en stock ?
+                </div>
+            </div>
+            
+            <div class="question-category">
+                <h4>💎 Conseils de Style</h4>
+                <div class="example-question" onclick="insertQuestion('Que me conseillez-vous pour un mariage ?')">
+                    Que me conseillez-vous pour un mariage ?
+                </div>
+                <div class="example-question" onclick="insertQuestion('Quelle tenue pour un cocktail ?')">
+                    Quelle tenue pour un cocktail ?
+                </div>
+                <div class="example-question" onclick="insertQuestion('Comment m\'habiller pour le bureau ?')">
+                    Comment m'habiller pour le bureau ?
+                </div>
+            </div>
+            
+            <div class="question-category">
+                <h4>🧽 Entretien</h4>
+                <div class="example-question" onclick="insertQuestion('Comment entretenir le cuir d\'agneau ?')">
+                    Comment entretenir le cuir d'agneau ?
+                </div>
+                <div class="example-question" onclick="insertQuestion('Instructions pour le tweed ?')">
+                    Instructions pour le tweed ?
+                </div>
+                <div class="example-question" onclick="insertQuestion('Comment nettoyer mes chaussures ?')">
+                    Comment nettoyer mes chaussures ?
+                </div>
+            </div>
+        </div>
+        
+        <!-- Zone de Chat Principale -->
+        <div class="chat-main">
+            <div class="chat-header">
+                <h1>🛍️ Chanel - Maison Heritage</h1>
+                <p>Assistant IA pour Conseillers de Vente </p>
+            </div>
+            
+            <div class="status-bar">
+                <div class="status-indicator">
+                    <span class="status-dot"></span>
+                    <span>Système opérationnel</span>
+                </div>
+                <div id="modelStatus">Vérification du modèle IA...</div>
+            </div>
+            
+            <div class="messages" id="messages">
+                <div class="message message-bot">
+                    <div class="message-content bot">
+                        <strong>Assistant IA :</strong> Bonjour ! Je suis votre assistant intelligent pour Chanel Maison Heritage. 
+                        Je peux vous aider avec la recherche de produits, vérifier les stocks, donner des conseils de style 
+                        et fournir des instructions d'entretien. Cliquez sur les exemples à gauche ou tapez votre question.
+                        <div class="message-meta">
+                            <span>Système initialisé</span>
+                            <span class="confidence-badge">Prêt</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="error-message" id="errorMessage"></div>
+            <div class="loading" id="loading">L'assistant analyse votre demande...</div>
+            
+            <div class="input-container">
+                <textarea class="message-input" id="messageInput" 
+                         placeholder="Tapez votre question ici... (ou cliquez sur un exemple à gauche)" 
+                         rows="1"
+                         onkeydown="handleKeyDown(event)"
+                         oninput="autoResize(this)"></textarea>
+                <button class="send-button" id="sendButton" onclick="sendMessage()">
+                    Envoyer
+                </button>
+            </div>
+        </div>
+        
+        <!-- Sidebar Droite - Informations contextuelles -->
+        <div class="sidebar-right">
+            <h3>📊 Informations Contextuelles</h3>
+            
+            <div class="info-section">
+                <h4>🎯 Dernière Intention <span class="shortcut-key" id="lastIntent">-</span></h4>
+                <p id="intentDetails">En attente d'une question...</p>
+            </div>
+            
+            <div class="info-section">
+                <h4>🏷️ Entités Détectées</h4>
+                <div id="detectedEntities">Aucune entité détectée</div>
+            </div>
+            
+            <div class="info-section">
+                <h4>⚡ Performances</h4>
+                <div id="performanceStats">
+                    <p>Temps de réponse: <span id="responseTime">-</span></p>
+                    <p>Confiance: <span id="confidenceLevel">-</span></p>
+                </div>
+            </div>
+            
+            <div class="info-section">
+                <h4>🛍️ Produits Recommandés</h4>
+                <div id="recommendedProducts">Aucun produit trouvé</div>
+            </div>
+            
+            <div class="info-section">
+                <h4>💡 Conseils d'Usage</h4>
+                <p><strong>Raccourcis clavier :</strong></p>
+                <p>• <span class="shortcut-key">Entrée</span> : Envoyer</p>
+                <p>• <span class="shortcut-key">Shift+Entrée</span> : Nouvelle ligne</p>
+                <p><strong>Astuces :</strong></p>
+                <p>• Soyez spécifique dans vos questions</p>
+                <p>• Mentionnez la boutique pour le stock</p>
+                <p>• Utilisez les exemples comme guide</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let isLoading = false;
+        let messageCount = 0;
+        
+        // Auto-resize textarea
+        function autoResize(textarea) {
+            textarea.style.height = 'auto';
+            textarea.style.height = Math.min(textarea.scrollHeight, 120) + 'px';
+        }
+        
+        // Vérification du statut du modèle
+        async function checkModelStatus() {
+            try {
+                const response = await fetch('/health');
+                const data = await response.json();
+                
+                const statusElement = document.getElementById('modelStatus');
+                if (data.ml_model === 'loaded') {
+                    statusElement.innerHTML = '🤖 Modèle IA: <strong style="color: #28a745;">Opérationnel</strong>';
+                } else {
+                    statusElement.innerHTML = '🤖 Modèle IA: <strong style="color: #ffc107;">Chargement...</strong>';
+                    setTimeout(checkModelStatus, 3000);
+                }
+            } catch (error) {
+                document.getElementById('modelStatus').innerHTML = '🤖 Modèle IA: <strong style="color: #dc3545;">Erreur</strong>';
+            }
+        }
+        
+        // Insérer une question d'exemple
+        function insertQuestion(question) {
+            const input = document.getElementById('messageInput');
+            input.value = question;
+            autoResize(input);
+            input.focus();
+        }
+        
+        // Gestion des touches clavier
+        function handleKeyDown(event) {
+            if (event.key === 'Enter' && !event.shiftKey) {
+                event.preventDefault();
+                sendMessage();
+            }
+        }
+        
+        // Envoi de message
+        async function sendMessage() {
+            const input = document.getElementById('messageInput');
+            const sendButton = document.getElementById('sendButton');
+            const message = input.value.trim();
+            
+            if (!message || isLoading) return;
+            
+            isLoading = true;
+            sendButton.disabled = true;
+            hideError();
+            
+            // Afficher le message utilisateur
+            addMessage(message, 'user');
+            input.value = '';
+            autoResize(input);
+            
+            // Afficher le loading
+            document.getElementById('loading').style.display = 'block';
+            
+            const startTime = Date.now();
+            
+            try {
+                const response = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        message: message,
+                        user_id: 'conseiller_demo',
+                        session_id: 'session_' + Date.now()
+                    })
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`Erreur HTTP: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                const processingTime = Date.now() - startTime;
+                
+                // Afficher la réponse
+                addMessage(data.response, 'bot', {
+                    intent: data.intent,
+                    confidence: data.confidence,
+                    entities: data.entities,
+                    products: data.recommended_products,
+                    processingTime: processingTime
+                });
+                
+                // Mettre à jour les informations contextuelles
+                updateContextualInfo(data, processingTime);
+                
+            } catch (error) {
+                addMessage('😔 Une erreur technique est survenue. Veuillez réessayer.', 'bot');
+                showError(`Erreur: ${error.message}`);
+            } finally {
+                document.getElementById('loading').style.display = 'none';
+                isLoading = false;
+                sendButton.disabled = false;
+                input.focus();
+            }
+        }
+        
+        // Ajouter un message
+        function addMessage(text, sender, metadata = {}) {
+            const messages = document.getElementById('messages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message message-${sender}`;
+            
+            const contentDiv = document.createElement('div');
+            contentDiv.className = `message-content ${sender}`;
+            
+            if (sender === 'bot') {
+                contentDiv.innerHTML = `<strong>Assistant IA :</strong> ${text.replace(/\n/g, '<br>')}`;
+                
+                if (metadata.intent || metadata.confidence) {
+                    const metaDiv = document.createElement('div');
+                    metaDiv.className = 'message-meta';
+                    
+                    const timeSpan = document.createElement('span');
+                    timeSpan.textContent = new Date().toLocaleTimeString();
+                    
+                    const confidenceSpan = document.createElement('span');
+                    confidenceSpan.className = 'confidence-badge';
+                    confidenceSpan.textContent = metadata.confidence ? 
+                        `${(metadata.confidence * 100).toFixed(1)}% confiance` : 
+                        'Analysé';
+                    
+                    metaDiv.appendChild(timeSpan);
+                    metaDiv.appendChild(confidenceSpan);
+                    contentDiv.appendChild(metaDiv);
+                }
+            } else {
+                contentDiv.innerHTML = `<strong>Vous :</strong> ${text}`;
+                
+                const metaDiv = document.createElement('div');
+                metaDiv.className = 'message-meta';
+                metaDiv.innerHTML = `<span>${new Date().toLocaleTimeString()}</span>`;
+                contentDiv.appendChild(metaDiv);
+            }
+            
+            messageDiv.appendChild(contentDiv);
+            messages.appendChild(messageDiv);
+            messages.scrollTop = messages.scrollHeight;
+            
+            messageCount++;
+        }
+        
+        // Mettre à jour les informations contextuelles
+        function updateContextualInfo(data, processingTime) {
+            // Intention
+            document.getElementById('lastIntent').textContent = data.intent || '-';
+            document.getElementById('intentDetails').textContent = 
+                getIntentDescription(data.intent);
+            
+            // Entités
+            const entitiesDiv = document.getElementById('detectedEntities');
+            if (data.entities && Object.keys(data.entities).length > 0) {
+                entitiesDiv.innerHTML = '';
+                for (const [type, values] of Object.entries(data.entities)) {
+                    const entityItem = document.createElement('p');
+                    entityItem.innerHTML = `<strong>${type}:</strong> ${values.join(', ')}`;
+                    entitiesDiv.appendChild(entityItem);
+                }
+            } else {
+                entitiesDiv.textContent = 'Aucune entité détectée';
+            }
+            
+            // Performances
+            document.getElementById('responseTime').textContent = `${processingTime}ms`;
+            document.getElementById('confidenceLevel').textContent = 
+                data.confidence ? `${(data.confidence * 100).toFixed(1)}%` : '-';
+            
+            // Produits recommandés
+            const productsDiv = document.getElementById('recommendedProducts');
+            if (data.recommended_products && data.recommended_products.length > 0) {
+                productsDiv.innerHTML = '';
+                data.recommended_products.slice(0, 3).forEach(product => {
+                    const productItem = document.createElement('p');
+                    productItem.innerHTML = `• <strong>${product.name}</strong><br>  ${product.price}€`;
+                    productItem.style.marginBottom = '8px';
+                    productsDiv.appendChild(productItem);
+                });
+            } else {
+                productsDiv.textContent = 'Aucun produit trouvé';
+            }
+        }
+        
+        // Description des intentions
+        function getIntentDescription(intent) {
+            const descriptions = {
+                'product_search': 'Recherche de produits dans le catalogue',
+                'price_inquiry': 'Demande d\'informations tarifaires',
+                'stock_check': 'Vérification de disponibilité en stock',
+                'style_recommendation': 'Conseil en style et recommandations',
+                'care_instructions': 'Instructions d\'entretien des produits',
+                'general_chat': 'Conversation générale'
+            };
+            return descriptions[intent] || 'Intention non reconnue';
+        }
+        
+        // Gestion des erreurs
+        function showError(message) {
+            const errorDiv = document.getElementById('errorMessage');
+            errorDiv.textContent = message;
+            errorDiv.style.display = 'block';
+            setTimeout(hideError, 5000);
+        }
+        
+        function hideError() {
+            document.getElementById('errorMessage').style.display = 'none';
+        }
+        
+        // Initialisation
+        document.addEventListener('DOMContentLoaded', function() {
+            checkModelStatus();
+            
+            // Auto-focus sur l'input
+            document.getElementById('messageInput').focus();
+            
+            // Message de bienvenue avec exemples
+            setTimeout(() => {
+                const welcomeMessages = [
+                    "💡 Cliquez sur les exemples à gauche pour commencer rapidement !",
+                    "🎯 Essayez: 'Avez-vous du stock à Paris ?'",
+                    "✨ Ou demandez: 'Que me conseillez-vous pour un mariage ?'"
+                ];
+                
+                const randomMsg = welcomeMessages[Math.floor(Math.random() * welcomeMessages.length)];
+                addMessage(randomMsg, 'bot', { confidence: 1.0 });
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
