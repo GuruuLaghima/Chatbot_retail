@@ -1,3 +1,11 @@
 venv/
 __pycache__/
 checkpoints/
+models/fashion_chatbot_model.pkl
+*.pkl
+*.pt
+*.h5
+venv/
+__pycache__/
+checkpoints/
+.DS_Store
