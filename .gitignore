@@ -10,3 +10,4 @@ __pycache__/
 checkpoints/
 .DS_Store
 test_and_deploy.py
+.DS_Store

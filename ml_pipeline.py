@@ -7,8 +7,10 @@ from pathlib import Path
 from typing import Dict, List, Tuple, Optional
 from dataclasses import dataclass
 import random
+from difflib import get_close_matches
+from collections import Counter
 
-# ML Libraries optimisées
+# ML Libraries 
 from sklearn.model_selection import train_test_split, cross_val_score
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.svm import SVC
@@ -17,13 +19,15 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import classification_report, accuracy_score
 from sklearn.preprocessing import LabelEncoder
 from sklearn.pipeline import Pipeline
+from xgboost import XGBClassifier
+from lightgbm import LGBMClassifier
 
-# NLP Libraries
+
+# NLP 
 import nltk
 from nltk.corpus import stopwords
 from nltk.stem import SnowballStemmer
 
-# Download required NLTK data
 try:
     nltk.data.find('corpora/stopwords')
 except LookupError:
@@ -97,6 +101,72 @@ class OptimizedTextPreprocessor:
             'location': r'\b(paris|lyon|cannes|france|magasin|boutique|entrepot)\b',
             'product_type': r'\b(sac|chaussure|robe|tailleur|manteau|veste|bijou|collier|escarpin|ballerine)\w*\b'
         }
+
+        self.vocabulary = []  
+        self.vocab_built = False  
+
+    def build_vocabulary_from_data(self, training_data: List[Dict]):
+        """Construit automatiquement le vocabulaire depuis les données"""
+        if self.vocab_built:
+            return
+            
+        all_words = []
+        
+        # Extraire tous les mots de vos données d'entraînement
+        for example in training_data:
+            text = example.get('text', '')
+            # Preprocessing léger pour extraire mots propres
+            clean_text = self.clean_and_normalize(text)
+            words = clean_text.split()
+            all_words.extend(words)
+        
+        # Ajouter mots de vos patterns d'entités existants
+        for pattern in self.entity_patterns.values():
+            # Extraire mots des regex (simplification)
+            import re
+            words_in_pattern = re.findall(r'\b[a-zA-Z]{3,}\b', pattern)
+            all_words.extend(words_in_pattern)
+        
+        # Ajouter mots de vos fashion_keywords existants
+        all_words.extend(self.fashion_keywords)
+        
+        # Garder seulement les mots fréquents (filtre automatique)
+        word_counts = Counter(all_words)
+        self.vocabulary = [word for word, count in word_counts.items() if count >= 2]
+        
+        self.vocab_built = True
+        print(f"✅ Vocabulaire automatique construit: {len(self.vocabulary)} mots")
+    
+    def auto_correct_typos(self, text: str) -> str:
+        """Correction automatique sans dictionnaire prédéfini"""
+        if not self.vocab_built or not self.vocabulary:
+            return text
+        
+        words = text.lower().split()
+        corrected_words = []
+        
+        for word in words:
+            # Seulement corriger si le mot fait 4+ caractères
+            # (évite de corriger "sac" → "sec")
+            if len(word) >= 4:
+                # Chercher correspondance proche dans VOTRE vocabulaire
+                matches = get_close_matches(
+                    word, 
+                    self.vocabulary, 
+                    n=1,           
+                    cutoff=0.8     # 80% de similarité minimum
+                )
+                
+                if matches and matches[0] != word:
+                    # Seulement si différent ET plus proche
+                    corrected_words.append(matches[0])
+                else:
+                    corrected_words.append(word)
+            else:
+                # Mots courts : pas de correction
+                corrected_words.append(word)
+        
+        return ' '.join(corrected_words)
     
     def clean_and_normalize(self, text: str) -> str:
         """Nettoyage optimisé"""
@@ -160,6 +230,8 @@ class OptimizedTextPreprocessor:
     
     def preprocess_for_ml(self, text: str) -> str:
         """Preprocessing final pour ML"""
+
+        text = self.auto_correct_typos(text)
         tokens = self.intelligent_tokenize(text)
         return ' '.join(tokens)
 
@@ -205,6 +277,24 @@ class OptimizedIntentClassifier:
                 min_samples_leaf=2,
                 class_weight='balanced',
                 random_state=42
+            ),
+            
+            'xgboost': XGBClassifier(
+                n_estimators=100,
+                learning_rate=0.1,
+                subsample=0.8,
+                colsample_bytree=0.8,
+                random_state=42,
+                eval_metric='mlogloss'  
+            ),
+            'lightgbm': LGBMClassifier(
+                n_estimators=100,
+                max_depth=6,
+                learning_rate=0.1,
+                subsample=0.8,
+                colsample_bytree=0.8,
+                random_state=42,
+                verbose=-1  
             )
         }
         
@@ -212,6 +302,7 @@ class OptimizedIntentClassifier:
         self.best_model_name = None
         self.label_encoder = LabelEncoder()
         self.is_trained = False
+   
     
     def prepare_data(self, training_data: List[Dict]) -> Tuple[np.ndarray, np.ndarray]:
         """Préparation robuste des données"""
@@ -284,6 +375,28 @@ class OptimizedIntentClassifier:
             raise ValueError("Aucun modèle n'a pu être entraîné!")
         
         print(f"🏆 Meilleur: {self.best_model_name} (CV: {best_score:.3f})")
+
+        # 🔥 AJOUTEZ ICI LE CODE DE TEST
+        print("🧪 Test train/test split pour comparaison...")
+        X_train, X_test, y_train, y_test = train_test_split(
+            X_vectorized, y_encoded, test_size=0.2, random_state=42, stratify=y_encoded
+        )
+        
+        # Créer une nouvelle instance du meilleur modèle pour le test
+        test_model = trained_models[self.best_model_name].__class__(**trained_models[self.best_model_name].get_params())
+        test_model.fit(X_train, y_train)
+        simple_accuracy = test_model.score(X_test, y_test)
+        print(f"🧪 Test simple (train/test): {simple_accuracy:.3f}")
+        print(f"📊 Comparaison: CV={best_score:.3f} vs Train/Test={simple_accuracy:.3f}")
+        
+        self.is_trained = True
+        
+        return {
+            'best_model': self.best_model_name,
+            'cv_accuracy': best_score,
+            'train_test_accuracy': simple_accuracy, 
+            'all_cv_scores': model_cv_scores
+        }
         
         self.is_trained = True
         
@@ -606,7 +719,6 @@ class OptimizedFashionChatbot:
             raise
     
     def train_full_pipeline(self, training_file: str, products_file: str) -> Dict:
-        """Pipeline d'entraînement ultra-robuste"""
         print("⚡ TF-IDF + Validation Croisée + Recherche hybride robuste")
         
         try:
@@ -619,6 +731,11 @@ class OptimizedFashionChatbot:
                 raise ValueError("Aucune donnée d'entraînement trouvée!")
             if not products_data.get('products'):
                 raise ValueError("Aucun produit trouvé!")
+
+            print("\n🔤 Construction du vocabulaire automatique...")
+            self.intent_classifier.preprocessor.build_vocabulary_from_data(
+                training_data['training_data']
+            )
             
             # Entraînement
             print("\n📚 Phase d'entraînement...")
@@ -647,7 +764,7 @@ class OptimizedFashionChatbot:
                 'intent_classification': None,
                 'products_indexed': 0
             }
-    
+
     def process_query(self, user_query: str) -> Dict:
         """Traitement de requête ultra-robuste"""
         try:
@@ -1074,8 +1191,7 @@ class OptimizedFashionChatbot:
 
 # Test principal 
 if __name__ == "__main__":
-    print("🚀 CHATBOT ULTRA-OPTIMISÉ 2025")
-    print("🎯 Validation croisée + Recherche hybride robuste + Gestion d'erreurs")
+    print("🎯 Validation croisée + Recherche hybride + Gestion d'erreurs")
     
     chatbot = OptimizedFashionChatbot()
     

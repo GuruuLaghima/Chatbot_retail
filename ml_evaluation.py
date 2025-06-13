@@ -661,7 +661,7 @@ class ABTesting:
         # Méthode 1: Preprocessing optimisé actuel
         preprocessor_optimized = OptimizedTextPreprocessor()
         
-        # Méthode 2: Preprocessing basique (simulation)
+        # Méthode 2: Preprocessing basique 
         class BasicPreprocessor:
             def preprocess_for_ml(self, text: str) -> str:
                 import re
@@ -927,20 +927,11 @@ def comprehensive_evaluation():
     
     print(f"\n🎯 SCORE GLOBAL: {final_score:.1%}")
     
-    if final_score >= 0.9:
-        print("🎉 EXCELLENT ! Votre modèle ML dépasse toutes les attentes.")
-    elif final_score >= 0.8:
-        print("✅ TRÈS BIEN ! Votre modèle ML est performant et prêt.")
-    elif final_score >= 0.7:
-        print("👍 BIEN ! Votre modèle ML fonctionne correctement.")
-    else:
-        print("⚠️  Votre modèle ML nécessite des optimisations.")
     
     return all_results
 
 if __name__ == "__main__":
     # Configuration pour évaluation ML spécialisée
-    print("🔬 ÉVALUATION ML SPÉCIALISÉE - CHATBOT FASHION")
     print("🎯 Analyse détaillée des performances ML/NLP")
     print("="*60)
     
@@ -948,19 +939,12 @@ if __name__ == "__main__":
         # Lancement de l'évaluation complète
         evaluation_results = comprehensive_evaluation()
         
-        print("\n🎉 ÉVALUATION ML TERMINÉE AVEC SUCCÈS!")
-        print("\n💡 FICHIERS GÉNÉRÉS:")
+        print("\n🎉 ÉVALUATION ML :")
         print("   📄 ml_evaluation_report_[timestamp].md")
         print("   📊 ml_evaluation_results_[timestamp].json") 
         print("   📈 confusion_matrix_[timestamp].png")
         print("   📊 performance_metrics_[timestamp].png")
         print("   📉 learning_curve_[timestamp].png")
-        
-        print("\n🎓 UTILISEZ CES RÉSULTATS POUR:")
-        print("   1. Démontrer la qualité de votre ML pipeline")
-        print("   2. Justifier vos choix techniques")
-        print("   3. Présenter les métriques de performance")
-        print("   4. Identifier les axes d'amélioration")
         
     except Exception as e:
         print(f"❌ Erreur lors de l'évaluation: {e}")

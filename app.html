@@ -197,15 +197,6 @@
             align-items: center;
         }
         
-        .confidence-badge {
-            background: #e3f2fd;
-            color: #1976d2;
-            padding: 2px 8px;
-            border-radius: 12px;
-            font-size: 0.7em;
-            font-weight: 600;
-        }
-        
         .input-container {
             padding: 20px;
             background: white;
@@ -457,7 +448,6 @@
                         et fournir des instructions d'entretien. Cliquez sur les exemples à gauche ou tapez votre question.
                         <div class="message-meta">
                             <span>Système initialisé</span>
-                            <span class="confidence-badge">Prêt</span>
                         </div>
                     </div>
                 </div>
@@ -496,7 +486,6 @@
                 <h4>⚡ Performances</h4>
                 <div id="performanceStats">
                     <p>Temps de réponse: <span id="responseTime">-</span></p>
-                    <p>Confiance: <span id="confidenceLevel">-</span></p>
                 </div>
             </div>
             
@@ -605,7 +594,6 @@
                 // Afficher la réponse
                 addMessage(data.response, 'bot', {
                     intent: data.intent,
-                    confidence: data.confidence,
                     entities: data.entities,
                     products: data.recommended_products,
                     processingTime: processingTime
@@ -637,23 +625,14 @@
             if (sender === 'bot') {
                 contentDiv.innerHTML = `<strong>Assistant IA :</strong> ${text.replace(/\n/g, '<br>')}`;
                 
-                if (metadata.intent || metadata.confidence) {
-                    const metaDiv = document.createElement('div');
-                    metaDiv.className = 'message-meta';
-                    
-                    const timeSpan = document.createElement('span');
-                    timeSpan.textContent = new Date().toLocaleTimeString();
-                    
-                    const confidenceSpan = document.createElement('span');
-                    confidenceSpan.className = 'confidence-badge';
-                    confidenceSpan.textContent = metadata.confidence ? 
-                        `${(metadata.confidence * 100).toFixed(1)}% confiance` : 
-                        'Analysé';
-                    
-                    metaDiv.appendChild(timeSpan);
-                    metaDiv.appendChild(confidenceSpan);
-                    contentDiv.appendChild(metaDiv);
-                }
+                const metaDiv = document.createElement('div');
+                metaDiv.className = 'message-meta';
+                
+                const timeSpan = document.createElement('span');
+                timeSpan.textContent = new Date().toLocaleTimeString();
+                
+                metaDiv.appendChild(timeSpan);
+                contentDiv.appendChild(metaDiv);
             } else {
                 contentDiv.innerHTML = `<strong>Vous :</strong> ${text}`;
                 
@@ -692,8 +671,6 @@
             
             // Performances
             document.getElementById('responseTime').textContent = `${processingTime}ms`;
-            document.getElementById('confidenceLevel').textContent = 
-                data.confidence ? `${(data.confidence * 100).toFixed(1)}%` : '-';
             
             // Produits recommandés
             const productsDiv = document.getElementById('recommendedProducts');
@@ -751,7 +728,7 @@
                 ];
                 
                 const randomMsg = welcomeMessages[Math.floor(Math.random() * welcomeMessages.length)];
-                addMessage(randomMsg, 'bot', { confidence: 1.0 });
+                addMessage(randomMsg, 'bot');
             }, 2000);
         });
     </script>
